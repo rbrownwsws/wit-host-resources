@@ -1,0 +1,19 @@
+package example:addons;
+
+interface types {
+    resource note {
+        text: func() -> string;
+        set-text: func(new-text: string);
+    }
+}
+
+interface addon {
+    use types.{note};
+
+    before-add-note: func(note: borrow<note>);
+}
+
+world addons {
+    import types;
+    export addon;
+}
